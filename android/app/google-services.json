@@ -1,0 +1,246 @@
+{
+  "project_info": {
+    "project_number": "769729792175",
+    "firebase_url": "https://loyal-manifest-134214.firebaseio.com",
+    "project_id": "loyal-manifest-134214",
+    "storage_bucket": "loyal-manifest-134214.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769729792175:android:07936df3b2e933d067ec5a",
+        "android_client_info": {
+          "package_name": "com.fayaz07.flutter_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769729792175-8irgass41k8d6mth3b2indfbehqre1j2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fayaz07.flutter_firebase",
+            "certificate_hash": "5fada7b428fece7cedfcc22dfef442657209342c"
+          }
+        },
+        {
+          "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUi0TruH_2KQ1QQdeLYutgSvFj8R1rOuQ"
+        },
+        {
+          "current_key": "AIzaSyCJ0byZtuHagHXcSM-WMMDQpHA1ZYc9ZT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "769729792175-79ramk2h2o0dqfm9j008q7hqol57so50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hfhadi.dkakeenPlayground"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769729792175:android:86b6f4af0981d29867ec5a",
+        "android_client_info": {
+          "package_name": "com.hfhadi.dkakeen_playground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769729792175-3hpputt0n65iqkg13up658b2ccotj6n8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hfhadi.dkakeen_playground",
+            "certificate_hash": "5fada7b428fece7cedfcc22dfef442657209342c"
+          }
+        },
+        {
+          "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUi0TruH_2KQ1QQdeLYutgSvFj8R1rOuQ"
+        },
+        {
+          "current_key": "AIzaSyCJ0byZtuHagHXcSM-WMMDQpHA1ZYc9ZT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "769729792175-79ramk2h2o0dqfm9j008q7hqol57so50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hfhadi.dkakeenPlayground"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769729792175:android:9e26ac84f75d47e267ec5a",
+        "android_client_info": {
+          "package_name": "dk.salam.flutter_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769729792175-7i4vcf4miatbgle92r0bb50qrfi56tn8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dk.salam.flutter_book",
+            "certificate_hash": "5fada7b428fece7cedfcc22dfef442657209342c"
+          }
+        },
+        {
+          "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUi0TruH_2KQ1QQdeLYutgSvFj8R1rOuQ"
+        },
+        {
+          "current_key": "AIzaSyCJ0byZtuHagHXcSM-WMMDQpHA1ZYc9ZT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "769729792175-79ramk2h2o0dqfm9j008q7hqol57so50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hfhadi.dkakeenPlayground"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769729792175:android:3c8de3aad779b35767ec5a",
+        "android_client_info": {
+          "package_name": "dk.salam.madayen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769729792175-hqbaf91fivqok9d9qrmgdvr0mproeqqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dk.salam.madayen",
+            "certificate_hash": "5fada7b428fece7cedfcc22dfef442657209342c"
+          }
+        },
+        {
+          "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUi0TruH_2KQ1QQdeLYutgSvFj8R1rOuQ"
+        },
+        {
+          "current_key": "AIzaSyCJ0byZtuHagHXcSM-WMMDQpHA1ZYc9ZT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "769729792175-79ramk2h2o0dqfm9j008q7hqol57so50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hfhadi.dkakeenPlayground"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769729792175:android:1245a7566728cd3d67ec5a",
+        "android_client_info": {
+          "package_name": "dk.salam.sms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769729792175-4s44rdhve4p3sgiurtj90519rm27i84p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dk.salam.sms",
+            "certificate_hash": "5fada7b428fece7cedfcc22dfef442657209342c"
+          }
+        },
+        {
+          "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUi0TruH_2KQ1QQdeLYutgSvFj8R1rOuQ"
+        },
+        {
+          "current_key": "AIzaSyCJ0byZtuHagHXcSM-WMMDQpHA1ZYc9ZT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769729792175-be0iph2nanis7hv39q39290ddke64lk9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "769729792175-79ramk2h2o0dqfm9j008q7hqol57so50.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hfhadi.dkakeenPlayground"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
