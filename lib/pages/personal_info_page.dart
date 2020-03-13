@@ -1,5 +1,6 @@
-import 'package:madayen/screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:madayen/screens/LoginScreen.dart';
+import 'package:madayen/screens/loginpage.dart';
 
 class PersonalInfoPage extends StatelessWidget {
   /* final Bloc _bloc;
@@ -7,13 +8,8 @@ class PersonalInfoPage extends StatelessWidget {
 
   PersonalInfoPage(this._bloc, this.darkThemeEnabled);*/
 
-  
-
   @override
   Widget build(BuildContext context) {
-    
     return LoginScreen();
   }
 }
-
-

@@ -38,70 +38,31 @@ class _AccountWidgetState extends State<AccountWidget> {
         padding: EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            CarouselDemo(
-              imageList: widget.account.pics,
-            ),
-
-            //todo: I should remove the comment
-            /* (widget.account.pics.length == 0
-                ? SizedBox(
-                    width: 1,
-                    height: 1,
+            widget.account.pics[0] != '' && widget.account.pics[1] != ''
+                ? CarouselDemo(
+                    imageList: widget.account.pics,
                   )
-                : Hero(
-                    tag: widget.account.title+((i++).toString()),
-                    child: Image.network(
-                      widget.account.pics[_imageIndex],
-                      fit: BoxFit.fill,
-                      // style: TextStyle(fontSize: 200),
-                      // textAlign: TextAlign.center,
+                : Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                          widget.account.address,
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              color: Colors.deepOrange,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          widget.account.hours,
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
-                  )
-            ),
-            Container(
-              height: 100,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: widget.account.pics
-                    .map(
-                      (pic) => GestureDetector(
-                        onTap: () =>{
-                          _changeCell(widget.account.pics.indexOf(pic)),
-                          print(widget.account.pics.indexOf(pic)),
-
-
-
-                        },
-
-                        child: Image.network(widget
-                            .account.pics[widget.account.pics.indexOf(pic)]),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),*/
-
-            Container(
-              height: 50,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    widget.account.address,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                        color: Colors.deepOrange, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    widget.account.hours,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                        color: Colors.blueAccent, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-
             SizedBox(height: 14),
             Card(
               elevation: 5,
@@ -114,7 +75,6 @@ class _AccountWidgetState extends State<AccountWidget> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Row(

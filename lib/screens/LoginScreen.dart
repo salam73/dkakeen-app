@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:madayen/pages/favorites_page.dart';
 import 'package:madayen/screens/HomeScreen.dart';
+import 'package:madayen/services/authservice.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
     FirebaseAuth _auth = FirebaseAuth.instance;
 
     _auth.verifyPhoneNumber(
-        phoneNumber: '+4531223388',
+        phoneNumber: '+4531223389',
         timeout: Duration(seconds: 60),
         verificationCompleted: (AuthCredential credential) async {
           //  Navigator.of(context).pop();
@@ -31,10 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
           user2 = user;
 
           if (user != null) {
-           setState(() {
-             user2==user;
-           });
-            ;
+            setState(() {
+              user2 == user;
+            });
           } else {
             print("Error");
           }
@@ -69,8 +69,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
           FirebaseUser user = result.user;
 
+          user2 = user;
+
           if (user != null) {
-            ;
+            setState(() {
+              user2 == user;
+            });
           } else {
             print("Error");
           }
@@ -78,7 +82,30 @@ class _LoginScreenState extends State<LoginScreen> {
           //This callback would gets called when verification is done auto maticlly
         },
         verificationFailed: (AuthException exception) {
-          print(exception);
+          print(exception.message);
+
+          final snackBar = SnackBar(
+            content: Text(exception.message),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change.
+              },
+            ),
+          );
+
+          // Find the Scaffold in the widget tree and use
+          // it to show a SnackBar.
+          Scaffold.of(context).showSnackBar(snackBar);
+
+          SnackBar(
+              content: Text('Yay! A SnackBar!'),
+              action: SnackBarAction(
+                label: 'Undo',
+                onPressed: () {
+                  // Some code to undo the change.
+                },
+              ));
         },
         codeSent: (String verificationId, [int forceResendingToken]) {
           showDialog(
@@ -136,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    mydaad(context);
+    //  mydaad(context);
 
     // TODO: implement initState
     super.initState();
@@ -145,64 +172,96 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: user2 == null
-            ? Container(
-                padding: EdgeInsets.all(32),
-                child: Form(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Login to",
-                        style: TextStyle(
-                            color: Colors.lightBlue,
-                            fontSize: 36,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide:
-                                    BorderSide(color: Colors.grey[200])),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                borderSide:
-                                    BorderSide(color: Colors.grey[300])),
-                            filled: true,
-                            fillColor: Colors.grey[100],
-                            hintText: "Mobile Number"),
-                        controller: _phoneController,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        child: FlatButton(
-                          child: Text("LOGIN"),
-                          textColor: Colors.white,
-                          padding: EdgeInsets.all(16),
-                          onPressed: () {
-                            final phone = _phoneController.text.trim();
+      body: user2 == null
+          ? Container(
+              padding: EdgeInsets.all(32),
+              child: Form(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Login to",
+                      style: TextStyle(
+                          color: Colors.lightBlue,
+                          fontSize: 36,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              borderSide: BorderSide(color: Colors.grey[200])),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              borderSide: BorderSide(color: Colors.grey[300])),
+                          filled: true,
+                          fillColor: Colors.grey[100],
+                          hintText: "Mobile Number"),
+                      controller: _phoneController,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: FlatButton(
+                        child: Text("LOGIN"),
+                        textColor: Colors.white,
+                        padding: EdgeInsets.all(16),
+                        onPressed: () {
+                          final phone = _phoneController.text.trim();
 
-                            loginUser(phone, context);
-                          },
-                          color: Colors.blue,
-                        ),
-                      )
-                    ],
-                  ),
+                          loginUser(phone, context);
+                        },
+                        color: Colors.blue,
+                      ),
+                    )
+                  ],
                 ),
-              )
-            : Container(child: Text(user2.phoneNumber)),
+              ),
+            )
+          : Column(
+              children: <Widget>[
+                Container(child: Text(user2.phoneNumber)),
+                RaisedButton(
+                  child: Text('Signout'),
+                  onPressed: () {
+                    AuthService().signOut();
+                  },
+                )
+              ],
+            ),
+    );
+  }
+}
+
+class SnackBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        onPressed: () {
+          final snackBar = SnackBar(
+            content: Text('Yay! A SnackBar!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change.
+              },
+            ),
+          );
+
+          // Find the Scaffold in the widget tree and use
+          // it to show a SnackBar.
+          Scaffold.of(context).showSnackBar(snackBar);
+        },
+        child: Text('Show SnackBar'),
       ),
     );
   }

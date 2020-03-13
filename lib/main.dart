@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:madayen/pages/map_page.dart';
-import 'package:madayen/pages/neighborhood_page.dart';
 import 'package:madayen/pages/neighborhoods.dart';
 import 'package:madayen/pages/share_page.dart';
+import 'package:madayen/widgets/section_widget.dart';
 import 'model/model.dart';
 
 import 'pages/advertisements_page.dart';
@@ -345,6 +345,7 @@ List<AppSection> appSections = [
   AppSection(SettingsPage(), Icons.settings, 'إعدادات التطبيق'),
   AppSection(SharePage(), Icons.share, 'شارك التطبيق'),
   AppSection(Neighborhoods(), Icons.share, 'الأحياء'),
+  //AppSection(SectionWidget(sections:null), Icons.share, 'الأحياء'),
 ];
 
 class Bloc {

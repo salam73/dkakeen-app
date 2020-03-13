@@ -205,4 +205,7 @@ class SectionSearch extends SearchDelegate<Widget> {
           .toList(),
     );
   }
+
+  @override
+  String get searchFieldLabel => 'بحث';
 }

@@ -46,8 +46,7 @@ class HomePage extends StatelessWidget {
                             )*/
                           ],
                         ),
-                        body:
-                            SectionWidget(section, sections.indexOf(section))),
+                        body: SectionWidget(section)),
                   ),
                 );
               },
@@ -56,12 +55,10 @@ class HomePage extends StatelessWidget {
                   Flexible(
                     flex: 9,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(9),
-                      child: Image.network(
-                        section.pic,
-                        //fit: BoxFit.fill,
-                      ),
-                    ),
+                        borderRadius: BorderRadius.circular(9),
+                        child: CachedNetworkImage(
+                          imageUrl: section.pic,
+                        )),
                   ),
                   Flexible(
                     flex: 4,
