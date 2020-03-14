@@ -4,6 +4,6 @@ import 'package:madayen/pages/map_page.dart';
 class CompetitionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MyGoogleMap();
+    return Container();
   }
 }
