@@ -143,12 +143,22 @@ class _SectionWidgetState extends State<SectionWidget> {
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(12.0),
                                 ),
-                                child: Image.network(
-                                  account.pics[0],
-                                  height:
-                                      100, // need to see this line of code again
-                                  //fit: BoxFit.fill,
-                                ),
+                                child: account.logo != null
+                                    ? Image.network(
+                                        account.logo,
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit
+                                            .fill, // need to see this line of code again
+                                        //fit: BoxFit.fill,
+                                      )
+                                    : Image.network(account.pics[0],
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.fill
+                                        // need to see this line of code again
+                                        //fit: BoxFit.fill,
+                                        ),
                               ),
                             ],
                           ),

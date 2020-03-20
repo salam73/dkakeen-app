@@ -68,9 +68,10 @@ class _NeighborhoodPageState extends State<NeighborhoodPage> {
           children: widget.area.accounts
               // .where((element) => element.title.contains('مطاعم'))
               //.where((element) => element.address.contains(''))
-              .map((account) => Container(
-                    height: 180,
-                    child: Slidable(
+              /*
+
+          here how to make slidable
+            Slidable(
                       actionPane: SlidableDrawerActionPane(),
                       actionExtentRatio: 0.25,
                       child: Container(
@@ -114,11 +115,11 @@ class _NeighborhoodPageState extends State<NeighborhoodPage> {
                                               areaId: account.id,
                                             )
                                                 ? Icon(
-                                                    Icons.favorite,
+                                                    Icons.star,
                                                     color: Colors.red,
                                                   )
                                                 : Icon(
-                                                    Icons.favorite_border,
+                                                    Icons.star_border,
                                                     color: Colors.grey,
                                                   ),
                                             onPressed: () {
@@ -229,6 +230,133 @@ class _NeighborhoodPageState extends State<NeighborhoodPage> {
                           onTap: () => {},
                         ),
                       ],
+                    ),
+           */
+
+              .map((account) => Container(
+                    height: 180,
+                    child: Container(
+                      //height: 280,
+                      width: double.infinity,
+                      child: GestureDetector(
+                        onTap: () {
+                          widget.area.accounts.indexOf(account).toString();
+                          print('accountIndex:' +
+                              widget.area.accounts.indexOf(account).toString());
+                          //  print('sectionIndex:' + _sectionIndex.toString());
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountWidget(account: account)),
+                          );
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: getmyfavorite(
+                                            areaId: account.id,
+                                          )
+                                              ? Icon(
+                                                  Icons.star,
+                                                  color: Colors.red,
+                                                )
+                                              : Icon(
+                                                  Icons.star_border,
+                                                  color: Colors.grey,
+                                                ),
+                                          onPressed: () {
+                                            _setref(
+                                              accountId: widget
+                                                  .area
+                                                  .accounts[widget.area.accounts
+                                                      .indexOf(account)]
+                                                  .id,
+                                            );
+                                          },
+                                        ),
+                                        IconButton(
+                                            icon: Icon(
+                                              Icons.share,
+                                              color: Colors.grey,
+                                            ),
+                                            onPressed: () => {
+                                                  // _resetref(),
+                                                  share(context, account),
+                                                }),
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(right: 10),
+                                        child: Text(
+                                          account.title,
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                          ),
+                                          textDirection: TextDirection.rtl,
+                                        ),
+                                      ),
+                                    ),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(12.0),
+                                      ),
+                                      child: Image.network(
+                                        account.pics[0],
+                                        height:
+                                            100, // need to see this line of code again
+                                        //fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10.0, vertical: 0),
+                                    child: Text(
+                                      account.address,
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          color: Colors.deepOrange,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      account.hours,
+                                      style: TextStyle(
+                                          color: Colors.blueAccent,
+                                          fontWeight: FontWeight.bold),
+                                      textDirection: TextDirection.rtl,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ))
               .toList(),

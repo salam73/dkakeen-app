@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -41,38 +42,12 @@ class _CarouselDemoState extends State<CarouselDemo> {
           widget.imageList,
           (index, i) {
             return Container(
-              margin: EdgeInsets.all(5.0),
+              margin: EdgeInsets.all(3.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 child: Stack(children: <Widget>[
-                  Image.network(i, fit: BoxFit.cover, width: 1000.0),
-                  Positioned(
-                    bottom: 0.0,
-                    left: 0.0,
-                    right: 0.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(200, 0, 0, 0),
-                            Color.fromARGB(0, 0, 0, 0)
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                      ),
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      child: Text(
-                        'No. ${index + 1} صورة ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                  CachedNetworkImage(
+                      imageUrl: i, fit: BoxFit.cover, width: 1000.0),
                 ]),
               ),
             );
@@ -82,8 +57,8 @@ class _CarouselDemoState extends State<CarouselDemo> {
         reverse: true,
         autoPlayInterval: Duration(seconds: 5),
         enlargeCenterPage: true,
-        viewportFraction: 0.9,
-        aspectRatio: 1.2,
+        viewportFraction: 0.92,
+        aspectRatio: 1.4,
         initialPage: 0,
         onPageChanged: (index) {
           setState(() {
@@ -117,10 +92,18 @@ class _CarouselDemoState extends State<CarouselDemo> {
               reverse: true,
               scrollDirection: Axis.horizontal,
               children: widget.imageList
-                  .map((value) => GestureDetector(
+                  .map(
+                    (value) => GestureDetector(
                       onTap: () => onPageChange(
                           basicSlider, widget.imageList.indexOf(value)),
-                      child: Card(elevation: 3, child: Image.network(value))))
+                      child: Card(
+                        elevation: 3,
+                        child: CachedNetworkImage(
+                          imageUrl: value,
+                        ),
+                      ),
+                    ),
+                  )
                   .toList()),
         ),
       ]);

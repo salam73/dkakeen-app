@@ -39,7 +39,6 @@ class SectionSearch extends SearchDelegate<Widget> {
       children: filteringAccounts
           .map((account) => GestureDetector(
                 onTap: () {
-                  //FIXME to close search bar after getting results
                   close(context, null);
                   Navigator.push(
                     context,

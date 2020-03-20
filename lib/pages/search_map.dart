@@ -18,7 +18,6 @@ class _MyMapState extends State<MyMap> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     allMarkers.add(Marker(
         markerId: MarkerId(widget.account.title),

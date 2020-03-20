@@ -20,7 +20,6 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
   String _mylocation = 'حي ';
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     if (coffeeShops.length == 0)
@@ -77,109 +76,110 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
         );
       },
       child: InkWell(
-          onTap: () {
-            moveCamera();
-          },
-          child: Stack(children: [
-            Center(
-                child: Container(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 10.0,
-                      vertical: 16.0,
-                    ),
-                    height: 155.0,
-                    width: 275.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black54,
-                            offset: Offset(0.0, 4.0),
-                            blurRadius: 10.0,
-                          ),
-                        ]),
-                    child: GestureDetector(
-                      onTap: () {
-                        _controller.showMarkerInfoWindow(
-                            MarkerId(coffeeShops[index].shopName));
+        onTap: () {
+          moveCamera();
+        },
+        child: Stack(children: [
+          Center(
+              child: Container(
+                  //color: Colors.red,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                    vertical: 16.0,
+                  ),
+                  height: 155.0,
+                  width: 275.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black54,
+                          offset: Offset(0.0, 4.0),
+                          blurRadius: 10.0,
+                        ),
+                      ]),
+                  child: GestureDetector(
+                    onTap: () {
+                      _controller.showMarkerInfoWindow(
+                          MarkerId(coffeeShops[index].shopName));
 
-                        _controller.animateCamera(
-                            CameraUpdate.newCameraPosition(CameraPosition(
-                                target:
-                                    coffeeShops[_pageController.page.toInt()]
-                                        .locationCoords,
-                                zoom: 16.0,
-                                bearing: 45.0,
-                                tilt: 45.0)));
-                      },
-                      child: Container(
-                          width: 170,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Colors.white),
-                          child: Row(children: [
-                            Padding(
+                      _controller.animateCamera(CameraUpdate.newCameraPosition(
+                          CameraPosition(
+                              target: coffeeShops[_pageController.page.toInt()]
+                                  .locationCoords,
+                              zoom: 16.0,
+                              bearing: 45.0,
+                              tilt: 45.0)));
+                    },
+                    child: Container(
+                        width: 170,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Colors.white),
+                        child: Row(children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Container(
+                                height: 80.0,
+                                width: 80.0,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10.0),
+                                        topLeft: Radius.circular(10.0)),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            coffeeShops[index].thumbNail),
+                                        fit: BoxFit.cover))),
+                          ),
+                          SizedBox(width: 5.0),
+                          Expanded(
+                            child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Container(
-                                  height: 80.0,
-                                  width: 80.0,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(10.0),
-                                          topLeft: Radius.circular(10.0)),
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              coffeeShops[index].thumbNail),
-                                          fit: BoxFit.cover))),
+                              child: Column(
+                                  //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 5),
+                                      child: Text(
+                                        coffeeShops[index].shopName,
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12.5,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 170,
+                                      child: Text(
+                                        coffeeShops[index].address,
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        width: 170.0,
+                                        child: Text(
+                                          coffeeShops[index].description,
+                                          style: TextStyle(
+                                              fontSize: 11.0,
+                                              fontWeight: FontWeight.w300),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                             ),
-                            SizedBox(width: 5.0),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Column(
-                                    //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 5),
-                                        child: Text(
-                                          coffeeShops[index].shopName,
-                                          textDirection: TextDirection.rtl,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12.5,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 170,
-                                        child: Text(
-                                          coffeeShops[index].address,
-                                          textDirection: TextDirection.rtl,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          width: 170.0,
-                                          child: Text(
-                                            coffeeShops[index].description,
-                                            style: TextStyle(
-                                                fontSize: 11.0,
-                                                fontWeight: FontWeight.w300),
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                              ),
-                            )
-                          ])),
-                    )))
-          ])),
+                          )
+                        ])),
+                  )))
+        ]),
+      ),
     );
   }
 
@@ -189,6 +189,8 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
         body: Stack(
       children: <Widget>[
         //this is the map
+        //-----map start here
+
         Container(
           height: MediaQuery.of(context).size.height - 50.0,
           width: MediaQuery.of(context).size.width,
@@ -200,6 +202,17 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
           ),
         ),
 
+        //-----map end here
+
+        Positioned(
+          top: 10.0,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 10,
+            color: Colors.white,
+            child: Text('hello world'),
+          ),
+        ),
         Positioned(
           bottom: 40.0,
           child: Container(
@@ -215,7 +228,7 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
               },
             ),
           ),
-        )
+        ),
       ],
     ));
   }

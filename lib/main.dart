@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:madayen/pages/fcm.dart';
 import 'package:madayen/pages/map_page.dart';
 import 'package:madayen/pages/neighborhoods.dart';
 import 'package:madayen/pages/share_page.dart';
-import 'package:madayen/widgets/section_widget.dart';
 import 'model/model.dart';
 
 import 'pages/advertisements_page.dart';
@@ -29,36 +29,38 @@ import 'dart:io';
 
 import 'widgets/account_widget.dart';
 
+import 'package:dynamic_theme/dynamic_theme.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: bloc.darkThemeEnabled,
-      initialData: false,
-      builder: (context, snapshot) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: snapshot.data ? ThemeData.dark() : ThemeData.light(),
-        home: MyHomePage(snapshot.data),
-      ),
-    );
+    return DynamicTheme(
+        defaultBrightness: Brightness.light,
+        data: (brightness) => new ThemeData(
+              primarySwatch: Colors.indigo,
+              brightness: brightness,
+            ),
+        themedWidgetBuilder: (context, theme) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: theme,
+            home: MyHomePage(),
+          );
+        });
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage(this.darkThemeEnabled);
-
-  List<Section> sections = ItemsBuilder().build();
-  List<Account> accounts = [];
-
-  final bool darkThemeEnabled;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Section> sections = ItemsBuilder().build();
+  List<Account> accounts = [];
+
   final Firestore _db = Firestore.instance;
   final FirebaseMessaging _fcm = FirebaseMessaging();
 
@@ -116,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),*/
       ),
       body: selectedPage.widget,
+
       endDrawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -126,16 +129,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   ArabicText('كربلاء', Colors.white),
                   ArabicText('username', Colors.white),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Text('نظام ليلي', style: TextStyle(color: Colors.white)),
-                      Switch(
-                        value: widget.darkThemeEnabled,
-                        onChanged: bloc.changeTheme,
-                      ),
-                    ],
-                  ),
                 ],
               ),
               decoration: BoxDecoration(
@@ -194,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   fcm() {
     for (Section section in sections)
-      for (Account account in section.accounts) widget.accounts.add(account);
+      for (Account account in section.accounts) accounts.add(account);
 
     if (Platform.isIOS) {
       iosSubscription = _fcm.onIosSettingsRegistered.listen((data) {
@@ -233,8 +226,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AccountWidget(
-                          account: widget.accounts.firstWhere(
+                        builder: (context) => /*SharePage()*/
+                            AccountWidget(
+                          account: accounts.firstWhere(
                             (element) => element.id
                                 .contains(message['data']['accountname']),
                           ),
@@ -251,7 +245,7 @@ class _MyHomePageState extends State<MyHomePage> {
           context,
           MaterialPageRoute(
             builder: (context) => AccountWidget(
-              account: widget.accounts.firstWhere(
+              account: accounts.firstWhere(
                 (element) =>
                     element.id.contains(message['data']['accountname']),
               ),
@@ -265,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
           context,
           MaterialPageRoute(
             builder: (context) => AccountWidget(
-              account: widget.accounts.firstWhere(
+              account: accounts.firstWhere(
                 (element) =>
                     element.id.contains(message['data']['accountname']),
               ),
@@ -343,15 +337,12 @@ List<AppSection> appSections = [
   AppSection(NewsPage(), Icons.fiber_new, 'الأخبار'),
   AppSection(EmergencyNumbersPage(), Icons.directions_car, 'أرقام الطوارئ'),
   AppSection(SettingsPage(), Icons.settings, 'إعدادات التطبيق'),
-  AppSection(SharePage(), Icons.share, 'شارك التطبيق'),
+  AppSection(
+      SharePage(
+        account: null,
+      ),
+      Icons.share,
+      'شارك التطبيق'),
   AppSection(Neighborhoods(), Icons.share, 'الأحياء'),
   //AppSection(SectionWidget(sections:null), Icons.share, 'الأحياء'),
 ];
-
-class Bloc {
-  final _themeController = StreamController<bool>();
-  get changeTheme => _themeController.sink.add;
-  get darkThemeEnabled => _themeController.stream;
-}
-
-final bloc = Bloc();
